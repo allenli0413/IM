@@ -24,7 +24,7 @@ android {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation "com.android.support:appcompat-v7:$support_version"
     implementation 'com.android.support.constraint:constraint-layout:1.1.2'
@@ -37,4 +37,5 @@ dependencies {
     implementation('com.roughike:bottom-bar:2.3.1') {
         exclude module: 'design'
     }
+    implementation files('libs/hyphenatechat_3.4.2.jar')
 }

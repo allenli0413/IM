@@ -1,5 +1,6 @@
 package com.liyh.im
 
+import android.app.ProgressDialog
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 
@@ -9,7 +10,9 @@ import android.support.v7.app.AppCompatActivity
  * @time  16 时 58 分
  * @descrip : activity基类
  */
-abstract class BaseActivity: AppCompatActivity() {
+abstract class BaseActivity : AppCompatActivity() {
+
+    val progressDialog by lazy { ProgressDialog(this) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,4 +30,13 @@ abstract class BaseActivity: AppCompatActivity() {
      * 获取布局Id
      */
     abstract fun getLayoutId(): Int
+
+    fun showProgress(msg: String) {
+        progressDialog.setMessage(msg)
+        progressDialog.show()
+    }
+
+    fun dismissProgress() {
+        progressDialog.dismiss()
+    }
 }
