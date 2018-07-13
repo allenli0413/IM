@@ -14,6 +14,10 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
+        ndk{
+            abiFilters("armeabi","armeabi-v7a","arm64-v8a","x86",)
+        }
     }
     buildTypes {
         release {
@@ -21,6 +25,8 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+//    ** 兼容Android6.0 系统所需 ， 如果这句话报错 ， 可在dependencies标签下使用compile 'cn.bmob.android:http-legacy:1.0'**
+    useLibrary 'org.apache.http.legacy'
 }
 
 dependencies {
@@ -38,4 +44,10 @@ dependencies {
         exclude module: 'design'
     }
     implementation files('libs/hyphenatechat_3.4.2.jar')
+    //bmob-sdk：Bmob的android sdk包，包含了Bmob的数据存储、文件等服务，以下是最新的bmob-sdk:
+    //3.5.5：请务必查看下面注释[1]
+    implementation 'cn.bmob.android:bmob-sdk:3.6.3'
+    //如果你想应用能够兼容Android6.0，请添加此依赖(org.apache.http.legacy.jar)
+//    compile 'cn.bmob.android:http-legacy:1.0'
+    implementation 'com.android.support:multidex:1.0.3'
 }

@@ -1,6 +1,7 @@
 package com.liyh.im.app
 
-import android.app.Application
+import android.support.multidex.MultiDexApplication
+import cn.bmob.v3.Bmob
 import com.hyphenate.chat.EMClient
 import com.hyphenate.chat.EMOptions
 import com.liyh.im.BuildConfig
@@ -11,10 +12,11 @@ import com.liyh.im.BuildConfig
  * @time  17 时 21 分
  * @descrip :
  */
-class ImApplication : Application() {
+class ImApplication : MultiDexApplication() {
     override fun onCreate() {
         super.onCreate()
         EMClient.getInstance().init(applicationContext, EMOptions())
         EMClient.getInstance().setDebugMode(BuildConfig.DEBUG)
+        Bmob.initialize(applicationContext, "5f656277545c7f0153cc37478476771b")
     }
 }

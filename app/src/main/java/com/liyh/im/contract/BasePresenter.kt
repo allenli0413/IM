@@ -1,5 +1,8 @@
 package com.liyh.im.contract
 
+import android.os.Handler
+import android.os.Looper
+
 /**
  * @author  Yahri Lee
  * @date  2018 年 07 月 06 日
@@ -7,4 +10,11 @@ package com.liyh.im.contract
  * @descrip :
  */
 interface BasePresenter {
+    companion object {
+        val handler by lazy { Handler(Looper.getMainLooper()) }
+    }
+
+    fun uiThread(f: () -> Unit) {
+        handler.post { f() }
+    }
 }
