@@ -1,4 +1,4 @@
-package ui.activity
+package com.liyh.im.ui.activity
 
 import android.Manifest
 import android.content.pm.PackageManager
@@ -35,6 +35,7 @@ class LoginActivity : BaseActivity(), LoginContract.View {
     override fun onLoginSuccess() {
         dismissProgress()
         startActivity<MainActivity>()
+        finish()
     }
 
     override fun onLoginFailed() {

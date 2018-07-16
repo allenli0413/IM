@@ -1,4 +1,4 @@
-package ui.activity
+package com.liyh.im.ui.activity
 
 import android.os.Handler
 import com.liyh.im.R
@@ -30,8 +30,9 @@ class SplashActivity: BaseActivity(),SplashContract.View {
     }
 
     override fun getLayoutId(): Int = R.layout.activity_splash
-
-    init {
+    override fun init() {
+        super.init()
         presenter.checkLoginStatus()
+
     }
 }

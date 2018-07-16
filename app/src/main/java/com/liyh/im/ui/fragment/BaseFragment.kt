@@ -1,10 +1,11 @@
-package ui.fragment
+package com.liyh.im.ui.fragment
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import org.jetbrains.anko.toast
 
 /**
  * @author  Yahri Lee
@@ -23,10 +24,15 @@ abstract class BaseFragment: Fragment() {
     /**
      * 初始化方法
      */
-    abstract fun init()
+    open fun init(){
+    }
 
     /**
      * 获取布局Id
      */
     abstract fun getLayoutId(): Int
+
+    fun showToast(strRes: Int) {
+        context?.toast(getString(strRes))
+    }
 }

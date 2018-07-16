@@ -1,4 +1,4 @@
-package ui.activity
+package com.liyh.im.ui.activity
 
 import com.liyh.im.R
 import com.liyh.im.contract.RegisterContract

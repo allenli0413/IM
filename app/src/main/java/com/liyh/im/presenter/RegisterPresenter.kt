@@ -5,6 +5,7 @@ import cn.bmob.v3.BmobUser
 import cn.bmob.v3.exception.BmobException
 import cn.bmob.v3.listener.SaveListener
 import com.hyphenate.chat.EMClient
+import com.hyphenate.exceptions.HyphenateException
 import com.liyh.im.contract.RegisterContract
 import com.liyh.im.extentions.isValidPassword
 import com.liyh.im.extentions.isValidUserName
@@ -50,6 +51,7 @@ class RegisterPresenter(val view: RegisterContract.View) : RegisterContract.Pres
                 } else {
                     //注册失败
                     if (p1.errorCode == 202) {
+                        //用户已存在
                         view.onUserExist()
                     } else {
                         view.onRegisterFailed()
@@ -68,7 +70,7 @@ class RegisterPresenter(val view: RegisterContract.View) : RegisterContract.Pres
             try {
                 EMClient.getInstance().createAccount(userName, password)
                 uiThread { view.onRegisterSuccess() }
-            } catch (e: Exception) {
+            } catch (e: HyphenateException) {
                 uiThread { view.onRegisterFailed() }
             }
 
