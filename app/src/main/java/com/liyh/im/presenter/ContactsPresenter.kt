@@ -21,7 +21,7 @@ class ContactsPresenter(val view: ContactsContract.View) : ContactsContract.Pres
                 val allContacts = EMClient.getInstance().contactManager().allContactsFromServer
                 allContacts.sortBy { it[0] }
                 allContacts.forEachIndexed { index, s ->
-                    val isShowFirstLetter = index == 0 || s[index] != s[index - 1]
+                    val isShowFirstLetter = index == 0 || s[0] != allContacts[index - 1][0]
                     val contactsItemModel = ContactsItemModel(s, s[0].toString().toUpperCase(), isShowFirstLetter)
                     contactsList.add(contactsItemModel)
                 }

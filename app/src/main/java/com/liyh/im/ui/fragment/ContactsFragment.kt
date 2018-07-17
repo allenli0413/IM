@@ -8,6 +8,7 @@ import com.liyh.im.adapter.ContactsListAdapter
 import com.liyh.im.adapter.EmContactListenerAdapter
 import com.liyh.im.contract.ContactsContract
 import com.liyh.im.presenter.ContactsPresenter
+import com.liyh.im.ui.widget.SlideBar
 import kotlinx.android.synthetic.main.fragment_contacts.*
 import kotlinx.android.synthetic.main.header.*
 
@@ -41,12 +42,24 @@ class ContactsFragment : BaseFragment(), ContactsContract.View {
         }
         presenter.loadContacts()
 
-        EMClient.getInstance().contactManager().setContactListener(object : EmContactListenerAdapter(){
+        EMClient.getInstance().contactManager().setContactListener(object : EmContactListenerAdapter() {
             override fun onContactDeleted(p0: String?) {
                 super.onContactDeleted(p0)
                 presenter.loadContacts()
             }
         })
+
+        slideBar.onScetionChangeListener = object : SlideBar.OnScetionChangeListener {
+            override fun onScetionChange(firstLetter: String) {
+                section.visibility = View.VISIBLE
+                section.text = firstLetter
+            }
+
+            override fun onSlideFinished() {
+                section.visibility = View.GONE
+            }
+
+        }
     }
 
     override fun onLoadContactsSuccess() {

@@ -6,4 +6,4 @@ package com.liyh.im.datas
  * @time  16 时 22 分
  * @descrip :
  */
-data class ContactsItemModel(val contactName:String, val firstLetter: String, val isShowFirstLetter: Boolean)
+data class ContactsItemModel(val contactName:String, val firstLetter: String, val isShowFirstLetter: Boolean = true)

@@ -1,4 +1,4 @@
-package com.liyh.im.widget
+package com.liyh.im.ui.widget
 
 import android.content.Context
 import android.util.AttributeSet

@@ -11,7 +11,7 @@ import com.hyphenate.chat.EMClient
 import com.liyh.im.R
 import com.liyh.im.datas.ContactsItemModel
 import com.liyh.im.ui.activity.ChatActivity
-import com.liyh.im.widget.ContactsListItemView
+import com.liyh.im.ui.widget.ContactsListItemView
 import org.jetbrains.anko.runOnUiThread
 import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast
