@@ -86,6 +86,7 @@
         <activity android:name="com.liyh.im.ui.activity.LoginActivity" />
         <activity android:name="com.liyh.im.ui.activity.RegisterActivity" />
         <activity android:name=".ui.activity.ChatActivity" />
+        <activity android:name=".ui.activity.AddFriendActivity" />
     </application>
 
 </manifest>

@@ -8,9 +8,11 @@ import com.liyh.im.adapter.ContactsListAdapter
 import com.liyh.im.adapter.EmContactListenerAdapter
 import com.liyh.im.contract.ContactsContract
 import com.liyh.im.presenter.ContactsPresenter
+import com.liyh.im.ui.activity.AddFriendActivity
 import com.liyh.im.ui.widget.SlideBar
 import kotlinx.android.synthetic.main.fragment_contacts.*
 import kotlinx.android.synthetic.main.header.*
+import org.jetbrains.anko.startActivity
 
 /**
  * @author  Yahri Lee
@@ -21,12 +23,32 @@ import kotlinx.android.synthetic.main.header.*
 class ContactsFragment : BaseFragment(), ContactsContract.View {
     val presenter by lazy { ContactsPresenter(this) }
 
+    val emContactListenerAdapter = object : EmContactListenerAdapter() {
+        override fun onContactDeleted(p0: String?) {
+            super.onContactDeleted(p0)
+            presenter.loadContacts()
+        }
+
+        override fun onContactAdded(p0: String?) {
+            super.onContactAdded(p0)
+            presenter.loadContacts()
+
+        }
+    }
+
     override fun getLayoutId(): Int = R.layout.fragment_contacts
 
     override fun init() {
         super.init()
+        initView()
+        initListener()
+        presenter.loadContacts()
+    }
+
+    private fun initView() {
         headerTitle.text = getString(R.string.contact)
         add.visibility = View.VISIBLE
+        add.setOnClickListener { context?.startActivity<AddFriendActivity>() }
         swipeRefreshLayout.apply {
             setColorSchemeResources(R.color.qq_blue)
             isRefreshing = true
@@ -40,19 +62,15 @@ class ContactsFragment : BaseFragment(), ContactsContract.View {
             layoutManager = LinearLayoutManager(context)
             adapter = ContactsListAdapter(context, presenter.contactsList)
         }
-        presenter.loadContacts()
+    }
 
-        EMClient.getInstance().contactManager().setContactListener(object : EmContactListenerAdapter() {
-            override fun onContactDeleted(p0: String?) {
-                super.onContactDeleted(p0)
-                presenter.loadContacts()
-            }
-        })
-
+    private fun initListener() {
+        EMClient.getInstance().contactManager().setContactListener(emContactListenerAdapter)
         slideBar.onScetionChangeListener = object : SlideBar.OnScetionChangeListener {
             override fun onScetionChange(firstLetter: String) {
                 section.visibility = View.VISIBLE
                 section.text = firstLetter
+                recyclerView.smoothScrollToPosition(getCurPos(firstLetter))
             }
 
             override fun onSlideFinished() {
@@ -60,6 +78,10 @@ class ContactsFragment : BaseFragment(), ContactsContract.View {
             }
 
         }
+    }
+
+    private fun getCurPos(firstLetter: String): Int = presenter.contactsList.binarySearch {
+        it.firstLetter[0].minus(firstLetter[0])
     }
 
     override fun onLoadContactsSuccess() {

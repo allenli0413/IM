@@ -13,8 +13,12 @@ import com.liyh.im.BuildConfig
  * @descrip :
  */
 class ImApplication : MultiDexApplication() {
+    companion object {
+        lateinit var instance: ImApplication
+    }
     override fun onCreate() {
         super.onCreate()
+        instance = this
         EMClient.getInstance().init(applicationContext, EMOptions())
         EMClient.getInstance().setDebugMode(BuildConfig.DEBUG)
         Bmob.initialize(applicationContext, "5f656277545c7f0153cc37478476771b")

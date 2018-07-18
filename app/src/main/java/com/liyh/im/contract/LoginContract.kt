@@ -6,7 +6,7 @@ package com.liyh.im.contract
  * @time  17 时 29 分
  * @descrip :
  */
-class LoginContract {
+interface LoginContract {
 
     interface Presenter: BasePresenter{
         fun login(userName: String, password: String)

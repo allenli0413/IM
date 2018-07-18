@@ -19,7 +19,7 @@ import org.jetbrains.anko.sp
 class SlideBar(context: Context?, attrs: AttributeSet? = null) : View(context, attrs) {
 
     companion object {
-        private val SECTIONS = arrayOf("A", "B", "C", "D", "E", "F", "G", "H", "I", "G", "K", "L",
+        private val SECTIONS = arrayOf("A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L",
                 "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z")
     }
 
