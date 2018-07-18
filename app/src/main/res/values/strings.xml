@@ -40,4 +40,5 @@
     <string name="user_already_exist">用户已存在</string>
     <string name="register_success">注册成功</string>
     <string name="logout_success">退出登录成功</string>
+    <string name="text_empty_message">没有更多聊天信息了</string>
 </resources>

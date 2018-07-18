@@ -34,8 +34,7 @@
             android:layout_toRightOf="@id/avatar"
             android:text="Hello"
             android:gravity="center"
-            android:background="@drawable/receive_msg_normal"
-            android:padding="5dp"/>
+            android:background="@drawable/receive_msg_normal"/>
 
     </RelativeLayout>
 

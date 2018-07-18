@@ -34,8 +34,7 @@
             android:layout_toLeftOf="@id/avatar"
             android:text="Hello"
             android:gravity="center"
-            android:background="@drawable/send_msg_normal"
-            android:padding="5dp"/>
+            android:background="@drawable/send_msg_normal"/>
 
         <ImageView
             android:id="@+id/sendMessageProgress"

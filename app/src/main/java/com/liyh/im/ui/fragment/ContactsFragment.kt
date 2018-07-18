@@ -93,4 +93,9 @@ class ContactsFragment : BaseFragment(), ContactsContract.View {
         swipeRefreshLayout.isRefreshing = false
         showToast(R.string.load_contacts_failed)
     }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        EMClient.getInstance().contactManager().removeContactListener(emContactListenerAdapter)
+    }
 }
