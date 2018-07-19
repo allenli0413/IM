@@ -35,4 +35,7 @@ abstract class BaseFragment: Fragment() {
     fun showToast(strRes: Int) {
         context?.toast(getString(strRes))
     }
+    fun showToast(text: String) {
+        context?.toast(text)
+    }
 }
